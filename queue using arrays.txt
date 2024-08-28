@@ -1,0 +1,63 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class queue
+{
+    public:
+  string names[50];
+  int ids[50];
+  int front=-1;
+  int rear=-1;
+  void enqueue(string name,int id)
+ {
+    rear++;
+    names[rear]=name;
+    ids[rear]=id;
+    cout<<"\t\tAFTER ENQUING"<<endl;
+    cout<<"name is:"<<name<<endl<<"id is:"<<id<<endl;
+ }
+ void dequeue()
+ {
+     string name;
+     int id;
+     front=0;
+     rear=0;
+     if(front==rear)
+     {
+       name=names[front];
+       id=ids[front];
+     }
+     else
+     {
+         name=names[front];
+       id=ids[front];
+     }
+     cout<<"\t\tAFTER DEQUEUING"<<endl;
+           cout<<"name is:"<<name<<endl<<"id is:"<<id<<endl;
+        front++;
+ }
+};
+int main()
+{
+    queue q;
+    int count,count1;
+    string name;
+    int id;
+    cout<<"Enter number of students in queue:";
+    cin>>count;
+    for(int i=0;i<count;i++)
+    {
+        cout<<"Enter name of the student:";
+        cin>>name;
+        cout<<"Enter id of the student:";
+        cin>>id;
+        q.enqueue(name,id);
+    }
+    cout<<endl;
+    cout<<"Enter number of students to be released:";
+    cin>>count1;
+    for(int i=0;i<count1;i++)
+    {
+        q.dequeue();
+    }
+}
