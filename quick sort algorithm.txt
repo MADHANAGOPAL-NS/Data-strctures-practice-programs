@@ -1,0 +1,62 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int partition(vector<int> &arr,int low,int high)
+{
+    int pivot=arr[low];
+    int i=low;
+    int j=high;
+    while(i<j)
+    {
+        while(arr[i]<=pivot && i<high)
+        {
+            i++;
+        }
+        while(arr[j]>pivot && j>low)
+        {
+            j--;
+        }
+        if(i<j)
+        {
+            swap(arr[i],arr[j]);
+        }
+    }
+    swap(arr[low],arr[j]);
+    return j;
+}
+void quicksort(vector<int> &arr,int low,int high)
+{
+    if(low<high)
+    {
+    int pivot_place=partition(arr,low,high);
+    quicksort(arr,low,pivot_place-1);
+    quicksort(arr,pivot_place+1,high);
+    }
+}
+int main()
+{
+    vector<int> arr;
+    int n,ele;
+    cout<<"Enter number of elements:";
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cout<<endl;
+        cout<<"Enter element "<<i+1<<":";
+        cin>>ele;
+        arr.push_back(ele);
+    }
+    cout<<endl;
+    cout<<"ARRAY BEFORE SORTING"<<endl;
+    for(int j=0;j<arr.size();j++)
+    {
+        cout<<arr[j]<<" ";
+    }
+    quicksort(arr,0,arr.size()-1);
+    cout<<endl;
+    cout<<"ARRAY AFTER SORTING"<<endl;
+    for(int k=0;k<arr.size();k++)
+    {
+        cout<<arr[k]<<" ";
+    }
+}
